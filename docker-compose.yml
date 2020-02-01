@@ -1,0 +1,51 @@
+# Use this file with docker-compose
+# https://docs.docker.com/compose/install/
+version: '3.5'
+
+services:
+  db:
+    image: postgres:10.9
+    volumes:
+    - './docker/volumes/postgres:/var/lib/postgresql/data'
+    networks:
+      - app_internal
+
+  # redis:
+  #   image: redis:4.0
+  #   ports:
+  #     - '6379:6379'
+  #   volumes:
+  #     - './docker/volumes/redis:/data'
+  #   networks:
+  #     - app_internal
+
+  web:
+    build: .
+    # command: bash -c "rm -rf tmp/* && foreman start -f Procfile.dev"
+    volumes:
+      - '.:/webpack-thp'
+    ports:
+      - "3000:3000"
+    depends_on:
+      - db
+      # - redis
+      - mailcatcher
+    env_file:
+      - '.env.web'
+    networks:
+      - app_internal
+      - app_external
+
+  mailcatcher:
+    image: djfarrelly/maildev
+    ports:
+      - "1080:80"
+    networks:
+      - app_internal
+      - app_external
+
+networks:
+  app_external:
+    name: app_external
+  app_internal:
+    name: app_internal
