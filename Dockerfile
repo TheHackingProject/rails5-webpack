@@ -26,7 +26,7 @@ RUN mkdir /webpack-thp
 
 WORKDIR /webpack-thp
 COPY Gemfile Gemfile
-# COPY Gemfile.lock Gemfile.lock
+COPY Gemfile.lock Gemfile.lock
 RUN bundle install
 
 ADD . /webpack-thp

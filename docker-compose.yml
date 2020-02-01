@@ -21,7 +21,7 @@ services:
 
   web:
     build: .
-    # command: bash -c "rm -rf tmp/* && foreman start -f Procfile.dev"
+    command: bash -c "rm -rf tmp/* && foreman start -f Procfile.dev"
     volumes:
       - '.:/webpack-thp'
     ports:
