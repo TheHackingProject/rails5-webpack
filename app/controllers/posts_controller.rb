@@ -5,6 +5,8 @@ class PostsController < ApplicationController
   # GET /posts.json
   def index
     @posts = Post.all
+
+    flash[:notice] = 'testing'
   end
 
   # GET /posts/1
