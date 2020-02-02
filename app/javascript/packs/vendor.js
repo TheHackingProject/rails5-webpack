@@ -17,10 +17,12 @@
 
 import 'bootstrap';
 import "../stylesheets/vendor"
+import $ from 'jquery'
 
 console.log('Hello World from Webpacker VENDOR')
 
-document.addEventListener("document:load", () => {
+window.addEventListener('DOMContentLoaded', (event) => {
   $('[data-toggle="tooltip"]').tooltip();
   $('[data-toggle="popover"]').popover();
-})
+  console.log('Window was loaded successully');
+});
