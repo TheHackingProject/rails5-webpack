@@ -16,3 +16,12 @@
 // const imagePath = (name) => images(name, true)
 
 console.log('Hello World from Webpacker')
+
+import Post from '../BL/post';
+
+window.addEventListener('DOMContentLoaded', (event) => {
+
+  let post = new Post();
+  post.hello();
+
+});
